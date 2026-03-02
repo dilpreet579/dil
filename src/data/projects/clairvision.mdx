@@ -1,31 +1,134 @@
 ---
-title: 'ClairVision - AI Event Photo Curation'
-description: 'An AI-powered computer vision pipeline for event photo curation, automating duplicate detection and blur filtering.'
+title: 'ClairVision - Scalable AI Image Curation & Vector Search Engine'
+description: 'A distributed, backend-first AI image curation system that streams remote images, builds vector embeddings, enables similarity graph clustering, and powers instant face + visual retrieval across events.'
 image: '/project/clairvision.png'
-technologies: ['Python', 'PyTorch', 'FaceNet', 'ResNet-50', 'FAISS', 'ViT']
-github: '#'
-live: '#'
-timeline: 'October 2025'
-role: 'AI Engineer'
+technologies:
+  [
+    'Node.js',
+    'Python',
+    'PostgreSQL',
+    'pgvector',
+    'Redis',
+    'Async Queues / Workers',
+    'FAISS',
+    'CLIP ViT-L/14',
+    'FaceNet (InceptionResnetV1)',
+    'WebGL'
+  ]
+github: 'https://github.com/dilpreet579/clairvision-model'
+live: ''
+timeline: 'Oct 2025 – Present'
+role: 'Backend & ML Systems Architecture'
+team: '3'
 status: 'In Development'
 featured: true
+challenges:
+  [
+    'Streaming Large Remote Image Datasets',
+    'Scalable Vector Indexing & Similarity Graph Construction',
+    'Async Pipeline Orchestration',
+    'Low-Latency On-Demand High-Res Streaming',
+    'Cross-Event Identity Matching'
+  ]
+learnings:
+  [
+    'Vector Database Architecture (pgvector)',
+    'Similarity Graph Modeling',
+    'Async Worker Queue Design',
+    'High-Throughput Ingestion Pipelines',
+    'Backend-Driven ML System Design'
+  ]
 isPublished: true
 ---
 
-# ClairVision
+## Overview
 
-Last Updated - 02 March 2026
+*Last Updated - 02 March 2026*
 
-Built an AI-powered computer vision pipeline for event photo curation, automating duplicate detection and blur filtering.
+**ClairVision** is a backend-first AI system designed to automate large-scale image curation and visual search. The system is architected as a scalable ingestion and retrieval engine capable of indexing thousands of remote images without permanently storing originals.
 
-## What it Does
-- Applied **CLIP ViT-L/14, FaceNet, MTCNN, and ResNet-50** for embedding generation, face detection, and quality scoring, achieving 97% clustering precision and 98% blur detection accuracy.
-- Optimized large-scale similarity search using **FAISS**, enabling sub-second retrieval and clustering on datasets exceeding 10k images.
+Images are streamed through asynchronous workers, embeddings are generated using CLIP and FaceNet, and vectors are stored in PostgreSQL via pgvector. A similarity graph is then constructed to enable instant clustering, duplicate grouping, and cross-event identity matching.
 
-## Technology Stack
-- Python
-- PyTorch
-- FAISS
-- ResNet-50 / FaceNet
-- Vision Transformers (ViT)
+The objective is to transform raw event photography into a structured, searchable visual database powered by vector similarity.
 
+---
+
+## Key Features
+
+### Distributed Image Ingestion Pipeline
+
+- **Streaming-Based Processing**: Indexes 3000+ remote images without storing raw originals.
+- **Async Worker Architecture**: Queue-driven embedding extraction and metadata generation.
+- **Fault-Tolerant Pipeline**: Retry-safe ingestion and background processing via Redis-backed workers.
+- **Scalable Design**: Ready for horizontal scaling across larger datasets.
+
+---
+
+### Vector Search & Similarity Graph
+
+- **CLIP ViT-L/14 Embeddings** for semantic image similarity.
+- **FaceNet (InceptionResnetV1)** for identity-based embeddings.
+- **pgvector + FAISS Indexing** for efficient cosine similarity search.
+- **Similarity Graph Construction** enabling near-duplicate clustering and visual grouping.
+
+---
+
+### High-Performance Retrieval System
+
+- **Low-Latency Vector Queries** via indexed nearest-neighbour search.
+- **Signed On-Demand Streaming** for high-resolution previews.
+- **Cross-Event Identity Matching** across independent image collections.
+- **Instant Visual Clustering** powered by similarity thresholds.
+
+---
+
+### Interactive Visualization Layer
+
+- **WebGL-Powered 3D Mesh UI**
+- Embedding cluster exploration
+- Real-time backend similarity queries
+- Graph-based visual navigation
+
+---
+
+## Architecture Overview
+
+1. Remote image ingestion
+2. Async worker queue processing
+3. Embedding extraction (CLIP + FaceNet)
+4. Vector storage in PostgreSQL (pgvector)
+5. Similarity graph generation
+6. FAISS / cosine similarity querying
+7. API-driven search and streaming
+
+---
+
+## Development Progress
+
+### Current Status
+
+- Fully operational ingestion + embedding pipeline
+- pgvector-based vector indexing implemented
+- Redis-backed async worker system running
+- Backend similarity search APIs live
+- Cross-event identity matching enabled
+
+---
+
+### Completed
+
+- 3000+ image indexing via streaming ingestion
+- Similarity graph construction
+- Visual + identity search endpoints
+- Signed streaming system for previews
+- Backend-first ML architecture
+
+---
+
+### Next Up
+
+- Horizontal scaling for 10k+ images
+- Distributed worker orchestration
+- Hybrid vector search (semantic + identity fusion)
+- Dockerized deployment + CI/CD
+- Public demo interface
