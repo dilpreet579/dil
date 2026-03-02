@@ -4,6 +4,7 @@ import ReactIcon from '@/components/technologies/ReactIcon';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
 import Postman from '@/components/technologies/Postman';
 import TypeScript from '@/components/technologies/TypeScript';
+import GCP from '@/components/technologies/GCP';
 
 export interface Technology {
   name: string;
@@ -35,7 +36,7 @@ export const experiences: Experience[] = [
     company: 'Soundverse AI',
     position: 'Applied AI Intern',
     location: 'New York, USA (Remote)',
-    image: '/company/promote.png',
+    image: '/company/soundverse.png',
     description: [
       'Worked on an Agentic AI assistant to power real-time, voice-first conversational user experiences.',
       'Developed a Model Context Protocol (MCP) server to expose Soundverse’s music generation APIs inside MCP-supported environments (e.g., Claude Desktop, IDEs like Cursor and Windsurf).',
@@ -81,13 +82,13 @@ export const experiences: Experience[] = [
       },
       {
         name: 'Google Cloud Platform',
-        href: 'https://postman.com/',
-        icon: <Postman />,
+        href: 'https://cloud.google.com/',
+        icon: <GCP />,
       },
     ],
     website: 'https://www.soundverse.ai/',
-    github: 'https://github.com/upsurgeio',
-    x: 'https://x.com/upsurgelabs',
-    linkedin: 'https://www.linkedin.com/company/upsurge-labs-pte-ltd',
+    // github: 'https://github.com/upsurgeio',
+    x: 'https://x.com/soundverse_ai',
+    linkedin: 'https://www.linkedin.com/company/soundverseai',
   }
 ];
