@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 import * as z from 'zod';
 
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -123,6 +124,53 @@ ${data.message.trim()}
   }
 }
 
+async function sendEmail(data: {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}): Promise<boolean> {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const toEmail = process.env.CONTACT_EMAIL || 'onboarding@resend.dev';
+
+  if (!resendApiKey) {
+    console.error('RESEND_API_KEY not configured');
+    return false;
+  }
+
+  try {
+    const resend = new Resend(resendApiKey);
+
+    const { error } = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to: [toEmail],
+      subject: `New Contact Form Submission from ${data.name}`,
+      html: `
+        <div>
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Phone:</strong> ${data.phone}</p>
+          <h3>Message:</h3>
+          <p>${data.message.replace(/\n/g, '<br>')}</p>
+          <hr />
+          <p><em>Submitted at: ${new Date().toLocaleString()}</em></p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error('Failed to send email:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const clientIP = getClientIP(request);
@@ -148,19 +196,25 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    const telegramSent = await sendToTelegram(validatedData);
+    // Send to both Telegram and Email in parallel for "double security"
+    const [telegramSuccess, emailSuccess] = await Promise.all([
+      sendToTelegram(validatedData),
+      sendEmail(validatedData),
+    ]);
 
-    if (!telegramSent) {
+    if (!telegramSuccess && !emailSuccess) {
       return NextResponse.json(
-        { error: 'Failed to send message. Please try again.' },
+        { error: 'Failed to send message via any channel. Please try again.' },
         { status: 500 },
       );
     }
 
+    // If at least one succeeded, we consider it a success for the user
     return NextResponse.json(
       {
         message: 'Message sent successfully!',
         success: true,
+        details: { telegram: telegramSuccess, email: emailSuccess },
       },
       {
         headers: {
