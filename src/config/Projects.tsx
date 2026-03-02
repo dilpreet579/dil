@@ -1,32 +1,32 @@
+import Docker from '@/components/technologies/Docker';
+import Expo from '@/components/technologies/Expo';
+import FastAPI from '@/components/technologies/FastAPI';
+import Firebase from '@/components/technologies/Firebase';
+import FramerMotion from '@/components/technologies/FramerMotion';
+import Langflow from '@/components/technologies/Langflow';
 import MongoDB from '@/components/technologies/MongoDB';
 import NextJs from '@/components/technologies/NextJs';
 import NodeJs from '@/components/technologies/NodeJs';
-import Python from '@/components/technologies/Python';
-import PyTorch from '@/components/technologies/PyTorch';
-import TypeScript from '@/components/technologies/TypeScript';
-import ReactIcon from '@/components/technologies/ReactIcon';
-import Firebase from '@/components/technologies/Firebase';
-import Expo from '@/components/technologies/Expo';
-import { Project } from '@/types/project';
-import FramerMotion from '@/components/technologies/FramerMotion';
-import TailwindCss from '@/components/technologies/TailwindCss';
-import FastAPI from '@/components/technologies/FastAPI';
-import Streamlit from '@/components/technologies/Streamlit';
-import Selenium from '@/components/technologies/Selenium';
-import Puppeteer from '@/components/technologies/Puppeteer';
-import Shadcn from '@/components/technologies/Shadcn';
-import Docker from '@/components/technologies/Docker';
-import SQLite from '@/components/technologies/SQLite';
-import Langflow from '@/components/technologies/Langflow';
-import SocketIo from '@/components/technologies/SocketIo';
-import Prisma from '@/components/technologies/Prisma';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
-import NestJs from '@/components/technologies/NestJs';
+import Prisma from '@/components/technologies/Prisma';
+import Puppeteer from '@/components/technologies/Puppeteer';
+import PyTorch from '@/components/technologies/PyTorch';
+import Python from '@/components/technologies/Python';
+import ReactIcon from '@/components/technologies/ReactIcon';
+import SQLite from '@/components/technologies/SQLite';
+import Selenium from '@/components/technologies/Selenium';
+import Shadcn from '@/components/technologies/Shadcn';
+import SocketIo from '@/components/technologies/SocketIo';
+import Streamlit from '@/components/technologies/Streamlit';
+import TailwindCss from '@/components/technologies/TailwindCss';
+import TypeScript from '@/components/technologies/TypeScript';
+import { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
     title: 'UniPool - University Carpooling Platform',
-    description: 'An exclusive carpooling application designed for university students to share rides securely, currently in development with a focus on verified student matching.',
+    description:
+      'An exclusive carpooling application designed for university students to share rides securely, currently in development with a focus on verified student matching.',
     image: '/project/unipool.png',
     link: '',
     technologies: [
@@ -43,7 +43,8 @@ export const projects: Project[] = [
   },
   {
     title: 'RideShare - Premium AI Ride Platform',
-    description: 'A dark-mode first ride-sharing platform with AI driver negotiation, real-time simulation, and Leaflet map integration.',
+    description:
+      'A dark-mode first ride-sharing platform with AI driver negotiation, real-time simulation, and Leaflet map integration.',
     image: '/project/rideshare.png',
     link: 'https://fj-fe-r2-dilpreet-nit-delhi.vercel.app/',
     technologies: [
@@ -62,7 +63,8 @@ export const projects: Project[] = [
   },
   {
     title: 'ClairVision - AI-Powered Event Photo Curation System',
-    description: 'Built an AI-powered computer vision pipeline for event photo curation, automating duplicate detection, blur filtering.',
+    description:
+      'Built an AI-powered computer vision pipeline for event photo curation, automating duplicate detection, blur filtering.',
     image: '/project/clairvision.png',
     link: '#',
     technologies: [
@@ -78,7 +80,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Real-Time Bot Detection System (Walmart Sparkathon 2025)',
-    description: 'Built a real-time ML system to detect and block malicious bot purchases during high-demand holiday sales.',
+    description:
+      'Built a real-time ML system to detect and block malicious bot purchases during high-demand holiday sales.',
     image: '/project/botdetection.png',
     link: 'https://bot-detector-model-dashboard.onrender.com/',
     technologies: [
@@ -97,9 +100,10 @@ export const projects: Project[] = [
   },
   {
     title: 'Event Check-In App',
-    description: 'A full-stack real-time event engagement platform where users can browse upcoming events, check in, and see live attendee updates.',
+    description:
+      'A full-stack real-time event engagement platform where users can browse upcoming events, check in, and see live attendee updates.',
     image: '/project/event-checkin.png',
-    link: '#', 
+    link: '#',
     technologies: [
       { name: 'React Native', icon: <ReactIcon key="react-native" /> },
       { name: 'Expo', icon: <Expo key="expo" /> },
@@ -117,7 +121,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Flowbit Orchestration',
-    description: 'A modern web application for orchestrating and managing Langflow workflows, built with Next.js, TypeScript, and SQLite.',
+    description:
+      'A modern web application for orchestrating and managing Langflow workflows, built with Next.js, TypeScript, and SQLite.',
     image: '/project/flowbit-orchestration.png',
     link: '',
     technologies: [
@@ -138,9 +143,10 @@ export const projects: Project[] = [
   },
   {
     title: 'Payment Dashboard App',
-    description: 'A comprehensive, real-time payment management application featuring secure authentication and live transaction tracking.',
+    description:
+      'A comprehensive, real-time payment management application featuring secure authentication and live transaction tracking.',
     image: '/project/payment-dashboard.png',
-    link: '#', 
+    link: '#',
     technologies: [
       { name: 'Expo', icon: <Expo key="expo" /> },
       { name: 'React Native', icon: <ReactIcon key="react-native" /> },
@@ -157,7 +163,8 @@ export const projects: Project[] = [
   },
   {
     title: 'VocaAI - AI Receptionist for Businesses',
-    description: 'Launched an AI-powered virtual receptionist, enabling 24/7 customer support and call automation.',
+    description:
+      'Launched an AI-powered virtual receptionist, enabling 24/7 customer support and call automation.',
     image: '/project/vocaai.png',
     link: 'https://voca-ai.vercel.app/',
     technologies: [
@@ -189,7 +196,8 @@ export const featuredProjectSlugs = [
 export const heroProjects = [
   {
     title: 'UniPool',
-    description: 'University carpooling application built with React Native and Firebase.',
+    description:
+      'University carpooling application built with React Native and Firebase.',
     image: '/project/unipool.png',
     link: '/projects/unipool',
   },
@@ -201,15 +209,16 @@ export const heroProjects = [
   },
   {
     title: 'ClairVision - Event Photo Curation',
-    description: 'An AI-powered computer vision pipeline for event photo curation.',
+    description:
+      'An AI-powered computer vision pipeline for event photo curation.',
     image: '/project/clairvision.png',
     link: '/projects/clairvision',
   },
   {
     title: 'Real-Time Bot Detection',
-    description: 'A real-time ML system to detect and block malicious bot purchases.',
+    description:
+      'A real-time ML system to detect and block malicious bot purchases.',
     image: '/project/botdetection.png',
     link: '/projects/bot-detection',
   },
 ];
-
