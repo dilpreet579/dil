@@ -33,10 +33,7 @@ const initialMessages: Message[] = [
     id: 1,
     text: "Hello! I'm Dilpreet's AI Assistant. How can I help you?",
     sender: 'bot',
-    timestamp: new Date().toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-    }),
+    timestamp: '',
   },
 ];
 
@@ -46,6 +43,23 @@ const ChatBubble: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { triggerHaptic, isMobile } = useHapticFeedback();
+
+  // Hydration fix: Set initial timestamp on mount
+  useEffect(() => {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === 1 && msg.timestamp === ''
+          ? {
+              ...msg,
+              timestamp: new Date().toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              }),
+            }
+          : msg,
+      )
+    );
+  }, []); // Run only on mount
 
   // Auto-scroll to bottom when new messages are added
   useEffect(() => {
