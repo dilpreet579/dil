@@ -5,9 +5,9 @@ import Python from '@/components/technologies/Python';
 import PyTorch from '@/components/technologies/PyTorch';
 import TypeScript from '@/components/technologies/TypeScript';
 import ReactIcon from '@/components/technologies/ReactIcon';
-import { Project } from '@/types/project';
 import Firebase from '@/components/technologies/Firebase';
 import Expo from '@/components/technologies/Expo';
+import { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
@@ -24,7 +24,24 @@ export const projects: Project[] = [
     live: '#',
     details: true,
     projectDetailsPageSlug: '/projects/unipool',
-    isWorking: false,
+    isWorking: true,
+  },
+  {
+    title: 'RideShare - Premium AI Ride Platform',
+    description: 'A dark-mode first ride-sharing platform with AI driver negotiation, real-time simulation, and Leaflet map integration.',
+    image: '/project/rideshare.png',
+    link: 'https://fj-fe-r2-dilpreet-nit-delhi.vercel.app/',
+    technologies: [
+      { name: 'Next.js 14', icon: <NextJs key="nextjs" /> },
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'Tailwind CSS', icon: <ReactIcon key="tailwind" /> },
+      { name: 'Azure OpenAI', icon: <Python key="openai" /> },
+    ],
+    github: 'https://github.com/dilpreet579/FJ-FE-R2-Dilpreet-NIT-Delhi',
+    live: 'https://fj-fe-r2-dilpreet-nit-delhi.vercel.app/',
+    details: true,
+    projectDetailsPageSlug: '/projects/rideshare',
+    isWorking: true,
   },
   {
     title: 'ClairVision - AI-Powered Event Photo Curation System',
@@ -36,7 +53,7 @@ export const projects: Project[] = [
       { name: 'PyTorch', icon: <PyTorch key="pytorch" /> },
       { name: 'FaceNet', icon: <TypeScript key="facenet" /> },
     ],
-    github: '#',
+    github: 'https://github.com/dilpreet579/clairvision-model',
     live: '#',
     details: true,
     projectDetailsPageSlug: '/projects/clairvision',
@@ -46,13 +63,13 @@ export const projects: Project[] = [
     title: 'Real-Time Bot Detection System (Walmart Sparkathon 2025)',
     description: 'Built a real-time ML system to detect and block malicious bot purchases during high-demand holiday sales.',
     image: '/project/botdetection.png',
-    link: '#',
+    link: 'https://bot-detector-model-dashboard.onrender.com/',
     technologies: [
       { name: 'Python', icon: <Python key="python" /> },
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
     ],
-    github: 'https://github.com/dilpreet579',
-    live: '#',
+    github: 'https://github.com/dilpreet579/Real-time-Grinch-Bots-Detection',
+    live: 'https://bot-detector-model-dashboard.onrender.com/',
     details: true,
     projectDetailsPageSlug: '/projects/bot-detection',
     isWorking: true,
@@ -77,6 +94,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjectSlugs = [
+  'rideshare',
   'unipool',
   'clairvision',
   'bot-detection',
@@ -84,6 +102,12 @@ export const featuredProjectSlugs = [
 ];
 
 export const heroProjects = [
+  {
+    title: 'RideShare',
+    description: 'AI-powered ride-sharing platform with real-time simulation.',
+    image: '/project/rideshare.png',
+    link: '/projects/rideshare',
+  },
   {
     title: 'UniPool',
     description: 'University carpooling application built with React Native and Firebase.',
@@ -101,12 +125,6 @@ export const heroProjects = [
     description: 'A real-time ML system to detect and block malicious bot purchases.',
     image: '/project/botdetection.png',
     link: '/projects/bot-detection',
-  },
-  {
-    title: 'VocaAI',
-    description: 'An AI-powered virtual receptionist for 24/7 support.',
-    image: '/project/vocaai.png',
-    link: '/projects/vocaai',
   },
 ];
 
