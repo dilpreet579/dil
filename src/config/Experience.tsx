@@ -1,11 +1,13 @@
+import Docker from '@/components/technologies/Docker';
+import GCP from '@/components/technologies/GCP';
+import Neo4j from '@/components/technologies/Neo4j';
 import NextJs from '@/components/technologies/NextJs';
 import NodeJs from '@/components/technologies/NodeJs';
-import ReactIcon from '@/components/technologies/ReactIcon';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
 import Postman from '@/components/technologies/Postman';
-import TypeScript from '@/components/technologies/TypeScript';
-import GCP from '@/components/technologies/GCP';
 import Python from '@/components/technologies/Python';
+import ReactIcon from '@/components/technologies/ReactIcon';
+import TypeScript from '@/components/technologies/TypeScript';
 
 export interface Technology {
   name: string;
@@ -86,10 +88,20 @@ export const experiences: Experience[] = [
         href: 'https://cloud.google.com/',
         icon: <GCP />,
       },
+      {
+        name: 'Docker',
+        href: 'https://www.docker.com/',
+        icon: <Docker />,
+      },
+      {
+        name: 'Neo4j',
+        href: 'https://neo4j.com/',
+        icon: <Neo4j key="neo4j" />,
+      },
     ],
     website: 'https://www.soundverse.ai/',
     // github: 'https://github.com/upsurgeio',
     x: 'https://x.com/soundverse_ai',
     linkedin: 'https://www.linkedin.com/company/soundverseai',
-  }
+  },
 ];

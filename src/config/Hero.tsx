@@ -35,6 +35,11 @@ export const heroConfig = {
   // Skills Configuration
   skills: [
     {
+      name: 'Next.js',
+      href: 'https://nextjs.org/',
+      component: 'NextJs',
+    },
+    {
       name: 'Typescript',
       href: 'https://www.typescriptlang.org/',
       component: 'TypeScript',
@@ -45,19 +50,14 @@ export const heroConfig = {
       component: 'Python',
     },
     {
-      name: 'Next.js',
-      href: 'https://nextjs.org/',
-      component: 'NextJs',
-    },
-    {
       name: 'React Native (Expo)',
       href: 'https://expo.dev/',
       component: 'ReactIcon',
     },
     {
-      name: 'PyTorch',
-      href: 'https://pytorch.org/',
-      component: 'PyTorch',
+      name: 'PostgreSQL',
+      href: 'https://www.postgresql.org/',
+      component: 'PostgreSQL',
     },
   ],
 
