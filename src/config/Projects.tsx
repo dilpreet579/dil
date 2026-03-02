@@ -14,6 +14,10 @@ import FastAPI from '@/components/technologies/FastAPI';
 import Streamlit from '@/components/technologies/Streamlit';
 import Selenium from '@/components/technologies/Selenium';
 import Puppeteer from '@/components/technologies/Puppeteer';
+import Shadcn from '@/components/technologies/Shadcn';
+import Docker from '@/components/technologies/Docker';
+import SQLite from '@/components/technologies/SQLite';
+import Langflow from '@/components/technologies/Langflow';
 
 export const projects: Project[] = [
   {
@@ -44,6 +48,7 @@ export const projects: Project[] = [
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'Tailwind CSS', icon: <TailwindCss key="tailwind" /> },
       { name: 'Framer Motion', icon: <FramerMotion key="framer-motion" /> },
+      { name: 'Shadcn UI', icon: <Shadcn key="shadcn" /> },
     ],
     github: 'https://github.com/dilpreet579/FJ-FE-R2-Dilpreet-NIT-Delhi',
     live: 'https://fj-fe-r2-dilpreet-nit-delhi.vercel.app/',
@@ -87,6 +92,27 @@ export const projects: Project[] = [
     isWorking: true,
   },
   {
+    title: 'Flowbit Orchestration',
+    description: 'A modern web application for orchestrating and managing Langflow workflows, built with Next.js, TypeScript, and SQLite.',
+    image: '/project/flowbit-orchestration.png',
+    link: '',
+    technologies: [
+      { name: 'Next.js 15', icon: <NextJs key="nextjs" /> },
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'React 19', icon: <ReactIcon key="react" /> },
+      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwind" /> },
+      { name: 'Shadcn UI', icon: <Shadcn key="shadcn" /> },
+      { name: 'SQLite', icon: <SQLite key="sqlite" /> },
+      { name: 'Docker', icon: <Docker key="docker" /> },
+      { name: 'Langflow', icon: <Langflow key="langflow" /> },
+    ],
+    github: 'https://github.com/dilpreet579/flowbit-orchestration',
+    live: '',
+    details: true,
+    projectDetailsPageSlug: '/projects/flowbit-orch',
+    isWorking: true,
+  },
+  {
     title: 'VocaAI - AI Receptionist for Businesses',
     description: 'Launched an AI-powered virtual receptionist, enabling 24/7 customer support and call automation.',
     image: '/project/vocaai.png',
@@ -107,6 +133,7 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjectSlugs = [
+  'flowbit-orch',
   'rideshare',
   'unipool',
   'clairvision',
@@ -116,16 +143,16 @@ export const featuredProjectSlugs = [
 
 export const heroProjects = [
   {
-    title: 'RideShare',
-    description: 'AI-powered ride-sharing platform with real-time simulation.',
-    image: '/project/rideshare.png',
-    link: '/projects/rideshare',
-  },
-  {
     title: 'UniPool',
     description: 'University carpooling application built with React Native and Firebase.',
     image: '/project/unipool.png',
     link: '/projects/unipool',
+  },
+  {
+    title: 'RideShare',
+    description: 'AI-powered ride-sharing platform with real-time simulation.',
+    image: '/project/rideshare.png',
+    link: '/projects/rideshare',
   },
   {
     title: 'ClairVision - Event Photo Curation',

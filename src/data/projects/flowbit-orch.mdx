@@ -1,0 +1,81 @@
+---
+title: 'Flowbit Orchestration'
+description: 'A modern web application for orchestrating and managing Langflow workflows, built with Next.js, TypeScript, and SQLite.'
+image: '/project/flowbit-orchestration.png'
+technologies:
+  [
+    'Next.js 15',
+    'TypeScript',
+    'React 19',
+    'Tailwind CSS',
+    'Shadcn UI',
+    'Langflow',
+    'SQLite',
+    'Node Cron',
+    'Recharts',
+    'Docker',
+  ]
+github: 'https://github.com/dilpreet579/flowbit-orchestration'
+live: ''
+timeline: 'July 2026'
+role: 'Full Stack AI Developer'
+team: 'Solo'
+status: 'completed'
+featured: true
+challenges:
+  [
+    'Real-time Workflow Execution Monitoring',
+    'SQLite Database Integration',
+    'Dynamic Flow Orchestration',
+    'Complex Message Tracking System',
+    'Cron Job Scheduling',
+  ]
+learnings:
+  [
+    'Next.js 15 App Router & API Routes',
+    'Langflow API Integration',
+    'Building Custom Dashboard Components',
+    'SQLite Data Persistence',
+    'Advanced React Hooks Patterns',
+  ]
+isPublished: true
+---
+
+## Overview
+
+Flowbit Orchestration is a comprehensive platform designed to streamline the management and execution of Langflow workflows. It provides a unified interface for monitoring real-time executions, managing message history, and scheduling automated tasks. The application bridges the gap between complex AI workflow definitions and operational oversight.
+
+## Why I Built This
+
+I realized that while Langflow is excellent for designing AI chains, managing them in a production environment, tracking executions, scheduling runs, and debugging message history, was often fragmented and difficult. I built Flowbit Orchestration to provide a centralized "control tower" for these workflows. I wanted a solution that offered visibility into what the AI agents were actually doing, when they were running, and how they were performing, all without needing to dive into raw database logs or separate monitoring tools.
+
+## What Users Can Do
+
+- **Monitor Executions:** View real-time status, duration, and outcomes of workflow runs with detailed logs.
+- **Manage Workflows:** Organize flows into folders, create new workflows, and trigger them manually or via schedule.
+- **Track Messages:** Inspect message history across different engines and workflows with advanced filtering.
+- **Schedule Jobs:** Set up cron jobs to automate workflow triggers at specific intervals.
+- **Visualize Data:** Gain insights into execution trends and performance metrics through interactive charts.
+- **Theme Customization:** Toggle between dark and light modes for a personalized viewing experience.
+
+## Tech Stack
+
+- **Frontend:** Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS
+- **UI Library:** Shadcn UI, Radix UI, Lucide React, Recharts
+- **Backend:** Next.js API Routes, Node.js
+- **Database:** SQLite for lightweight and efficient data persistence
+- **Orchestration:** Langflow Integration, Node Cron for scheduling
+- **Containerization:** Docker support for easy deployment
+
+## Architecture & Challenges
+
+- **Real-time Monitoring:** Implementing a responsive dashboard that updates execution states in real-time required efficient polling and state management to minimize latency and server load.
+- **Data Persistence:** integrating SQLite with Next.js server-side components and API routes presented challenges in maintaining consistent database connections and handling concurrent requests.
+- **Workflow Abstraction:** Designing a flexible schema to represent various Langflow workflow types (Classifier, Email, JSON, PDF Agents) and their unique execution parameters was crucial for a scalable architecture.
+- **Unified Messaging:** Creating a centralized message view that aggregates logs and interactions from disparate workflow engines required a normalized data model and complex filtering logic.
+
+## Future Plans
+
+- **WebSocket Integration:** Transitioning from polling to WebSockets for instant execution updates.
+- **User Authentication:** Adding multi-user support with role-based access control.
+- **Advanced Analytics:** expanding the reporting capabilities with more granular metrics and export options.
