@@ -28,7 +28,6 @@ export const projects: Project[] = [
     description:
       'An exclusive carpooling application designed for university students to share rides securely, currently in development with a focus on verified student matching.',
     image: '/project/unipool.png',
-    link: '',
     technologies: [
       { name: 'Expo', icon: <Expo key="expo" /> },
       { name: 'React Native', icon: <ReactIcon key="react-native" /> },
@@ -36,7 +35,7 @@ export const projects: Project[] = [
       { name: 'Firebase', icon: <Firebase key="firebase" /> },
     ],
     github: 'https://github.com/dilpreet579/unipool',
-    live: '',
+    // live: '',
     details: true,
     projectDetailsPageSlug: '/projects/unipool',
     isWorking: false,
@@ -46,7 +45,6 @@ export const projects: Project[] = [
     description:
       'A dark-mode first ride-sharing platform with AI driver negotiation, real-time simulation, and Leaflet map integration.',
     image: '/project/rideshare.png',
-    link: 'https://fj-fe-r2-dilpreet-nit-delhi.vercel.app/',
     technologies: [
       { name: 'Next.js 14', icon: <NextJs key="nextjs" /> },
       { name: 'React', icon: <ReactIcon key="react" /> },
@@ -66,14 +64,13 @@ export const projects: Project[] = [
     description:
       'Built an AI-powered computer vision pipeline for event photo curation, automating duplicate detection, blur filtering.',
     image: '/project/clairvision.png',
-    link: '#',
     technologies: [
       { name: 'Python', icon: <Python key="python" /> },
       { name: 'PyTorch', icon: <PyTorch key="pytorch" /> },
       { name: 'NextJS', icon: <NextJs key="nextjs" /> },
     ],
     github: 'https://github.com/dilpreet579/clairvision-model',
-    live: '#',
+    // live: '',
     details: true,
     projectDetailsPageSlug: '/projects/clairvision',
     isWorking: false,
@@ -83,7 +80,6 @@ export const projects: Project[] = [
     description:
       'Built a real-time ML system to detect and block malicious bot purchases during high-demand holiday sales.',
     image: '/project/botdetection.png',
-    link: 'https://bot-detector-model-dashboard.onrender.com/',
     technologies: [
       { name: 'Python', icon: <Python key="python" /> },
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
@@ -103,7 +99,6 @@ export const projects: Project[] = [
     description:
       'A full-stack real-time event engagement platform where users can browse upcoming events, check in, and see live attendee updates.',
     image: '/project/event-checkin.png',
-    link: '#',
     technologies: [
       { name: 'React Native', icon: <ReactIcon key="react-native" /> },
       { name: 'Expo', icon: <Expo key="expo" /> },
@@ -114,7 +109,7 @@ export const projects: Project[] = [
       { name: 'Docker', icon: <Docker key="docker" /> },
     ],
     github: 'https://github.com/dilpreet579/event-checkin-app',
-    live: '#',
+    // live: '',
     details: true,
     projectDetailsPageSlug: '/projects/event-checkin',
     isWorking: true,
@@ -124,7 +119,6 @@ export const projects: Project[] = [
     description:
       'A modern web application for orchestrating and managing Langflow workflows, built with Next.js, TypeScript, and SQLite.',
     image: '/project/flowbit-orchestration.png',
-    link: '',
     technologies: [
       { name: 'Next.js 15', icon: <NextJs key="nextjs" /> },
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
@@ -136,7 +130,7 @@ export const projects: Project[] = [
       { name: 'Langflow', icon: <Langflow key="langflow" /> },
     ],
     github: 'https://github.com/dilpreet579/flowbit-orchestration',
-    live: '',
+    // live: '',
     details: true,
     projectDetailsPageSlug: '/projects/flowbit-orch',
     isWorking: true,
@@ -146,7 +140,6 @@ export const projects: Project[] = [
     description:
       'A comprehensive, real-time payment management application featuring secure authentication and live transaction tracking.',
     image: '/project/payment-dashboard.png',
-    link: '#',
     technologies: [
       { name: 'Expo', icon: <Expo key="expo" /> },
       { name: 'React Native', icon: <ReactIcon key="react-native" /> },
@@ -156,7 +149,7 @@ export const projects: Project[] = [
       { name: 'Socket.io', icon: <SocketIo key="socketio" /> },
     ],
     github: 'https://github.com/dilpreet579/payments-dashboard-app',
-    live: '',
+    // live: '',
     details: true,
     projectDetailsPageSlug: '/projects/payments-dashboard',
     isWorking: true,
@@ -166,7 +159,6 @@ export const projects: Project[] = [
     description:
       'Launched an AI-powered virtual receptionist, enabling 24/7 customer support and call automation.',
     image: '/project/vocaai.png',
-    link: 'https://voca-ai.vercel.app/',
     technologies: [
       { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
