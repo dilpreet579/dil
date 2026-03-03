@@ -42,7 +42,7 @@ export const projects: Project[] = [
     isWorking: false,
   },
   {
-    title: 'RideShare - Premium AI Ride Platform',
+    title: 'RideShare - Premium Ride Platform',
     description:
       'A dark-mode first ride-sharing platform with AI driver negotiation, real-time simulation, and Leaflet map integration.',
     image: '/project/rideshare.png',

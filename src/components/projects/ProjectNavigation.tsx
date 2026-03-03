@@ -26,11 +26,11 @@ export function ProjectNavigation({ previous, next }: ProjectNavigationProps) {
             <Button
               variant="outline"
               asChild
-              className="group h-auto w-full justify-start p-4 text-left"
+              className="group h-auto w-full justify-start p-4 text-left whitespace-normal"
             >
               <Link href={`/projects/${previous.slug}`}>
                 <div className="flex items-center gap-3">
-                  <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+                  <ArrowLeft className="size-4 shrink-0 transition-transform group-hover:-translate-x-1" />
                   <div>
                     <div className="text-muted-foreground text-xs">
                       Previous Project
@@ -51,17 +51,17 @@ export function ProjectNavigation({ previous, next }: ProjectNavigationProps) {
             <Button
               variant="outline"
               asChild
-              className="group h-auto w-full justify-end p-4 text-right"
+              className="group h-auto w-full justify-end p-4 text-right whitespace-normal"
             >
               <Link href={`/projects/${next.slug}`}>
                 <div className="flex items-center gap-3">
-                  <div>
+                  <div className="flex flex-col items-end">
                     <div className="text-muted-foreground text-xs">
                       Next Project
                     </div>
                     <div className="font-medium">{next.title}</div>
                   </div>
-                  <ArrowUUpRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowUUpRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             </Button>
