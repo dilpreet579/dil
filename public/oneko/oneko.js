@@ -1,228 +1,190 @@
 // oneko.js: https://github.com/adryd325/oneko.js
 
-(async function oneko() {
+(function oneko() {
+  const isReducedMotion =
+    window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
+    window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+
+  if (isReducedMotion) return;
+
   const nekoEl = document.createElement('div');
-  let nekoPosX = 32,
-    nekoPosY = 32,
-    mousePosX = 0,
-    mousePosY = 0,
-    frameCount = 0,
-    idleTime = 0,
-    idleAnimation = null,
-    idleAnimationFrame = 0,
-    forceSleep = false,
-    grabbing = false,
-    grabStop = true,
-    nudge = false,
-    kuroNeko = false,
-    variant = 'classic';
+  let persistPosition = true;
 
-  function parseLocalStorage(key, fallback) {
-    try {
-      const value = JSON.parse(localStorage.getItem(`oneko:${key}`));
-      return typeof value === typeof fallback ? value : fallback;
-    } catch (e) {
-      console.error(e);
-      return fallback;
-    }
-  }
+  let nekoPosX = 32;
+  let nekoPosY = 32;
 
-  const nekoSpeed = 10,
-    variants = [
-      ['classic', 'Classic'],
-      ['dog', 'Dog'],
-      ['tora', 'Tora'],
-      ['maia', 'Maia (maia.crimew.gay)'],
-      ['vaporwave', 'Vaporwave (nya.rest)'],
+  let mousePosX = 0;
+  let mousePosY = 0;
+
+  let frameCount = 0;
+  let idleTime = 0;
+  let idleAnimation = null;
+  let idleAnimationFrame = 0;
+  let forceSleep = false;
+
+  const nekoSpeed = 10;
+  const spriteSets = {
+    idle: [[-3, -3]],
+    alert: [[-7, -3]],
+    scratchSelf: [
+      [-5, 0],
+      [-6, 0],
+      [-7, 0],
     ],
-    spriteSets = {
-      idle: [[-3, -3]],
-      alert: [[-7, -3]],
-      scratchSelf: [
-        [-5, 0],
-        [-6, 0],
-        [-7, 0],
-      ],
-      scratchWallN: [
-        [0, 0],
-        [0, -1],
-      ],
-      scratchWallS: [
-        [-7, -1],
-        [-6, -2],
-      ],
-      scratchWallE: [
-        [-2, -2],
-        [-2, -3],
-      ],
-      scratchWallW: [
-        [-4, 0],
-        [-4, -1],
-      ],
-      tired: [[-3, -2]],
-      sleeping: [
-        [-2, 0],
-        [-2, -1],
-      ],
-      N: [
-        [-1, -2],
-        [-1, -3],
-      ],
-      NE: [
-        [0, -2],
-        [0, -3],
-      ],
-      E: [
-        [-3, 0],
-        [-3, -1],
-      ],
-      SE: [
-        [-5, -1],
-        [-5, -2],
-      ],
-      S: [
-        [-6, -3],
-        [-7, -2],
-      ],
-      SW: [
-        [-5, -3],
-        [-6, -1],
-      ],
-      W: [
-        [-4, -2],
-        [-4, -3],
-      ],
-      NW: [
-        [-1, 0],
-        [-1, -1],
-      ],
-    };
+    scratchWallN: [
+      [0, 0],
+      [0, -1],
+    ],
+    scratchWallS: [
+      [-7, -1],
+      [-6, -2],
+    ],
+    scratchWallE: [
+      [-2, -2],
+      [-2, -3],
+    ],
+    scratchWallW: [
+      [-4, 0],
+      [-4, -1],
+    ],
+    tired: [[-3, -2]],
+    sleeping: [
+      [-2, 0],
+      [-2, -1],
+    ],
+    N: [
+      [-1, -2],
+      [-1, -3],
+    ],
+    NE: [
+      [0, -2],
+      [0, -3],
+    ],
+    E: [
+      [-3, 0],
+      [-3, -1],
+    ],
+    SE: [
+      [-5, -1],
+      [-5, -2],
+    ],
+    S: [
+      [-6, -3],
+      [-7, -2],
+    ],
+    SW: [
+      [-5, -3],
+      [-6, -1],
+    ],
+    W: [
+      [-4, -2],
+      [-4, -3],
+    ],
+    NW: [
+      [-1, 0],
+      [-1, -1],
+    ],
+  };
 
-  function sleep() {
-    forceSleep = !forceSleep;
-    nudge = false;
-    localStorage.setItem('oneko:forceSleep', forceSleep);
-
-    if (!forceSleep) {
-      resetIdleAnimation();
-      return;
+  function init() {
+    let nekoFile = './oneko.gif';
+    const curScript = document.currentScript;
+    if (curScript && curScript.dataset.cat) {
+      nekoFile = curScript.dataset.cat;
     }
-  }
+    if (curScript && curScript.dataset.persistPosition) {
+      if (curScript.dataset.persistPosition === '') {
+        persistPosition = true;
+      } else {
+        persistPosition = JSON.parse(
+          curScript.dataset.persistPosition.toLowerCase(),
+        );
+      }
+    }
 
-  function create() {
-    variant = parseLocalStorage('variant', 'classic');
-    kuroNeko = parseLocalStorage('kuroneko', false);
-
-    if (!variants.some((v) => v[0] === variant)) {
-      variant = 'classic';
+    if (persistPosition) {
+      let storedNeko = JSON.parse(window.localStorage.getItem('oneko'));
+      if (storedNeko !== null) {
+        nekoPosX = storedNeko.nekoPosX;
+        nekoPosY = storedNeko.nekoPosY;
+        mousePosX = storedNeko.mousePosX;
+        mousePosY = storedNeko.mousePosY;
+        frameCount = storedNeko.frameCount;
+        idleTime = storedNeko.idleTime;
+        idleAnimation = storedNeko.idleAnimation;
+        idleAnimationFrame = storedNeko.idleAnimationFrame;
+        nekoEl.style.backgroundPosition = storedNeko.bgPos;
+      }
     }
 
     nekoEl.id = 'oneko';
+    nekoEl.ariaHidden = true;
     nekoEl.style.width = '32px';
     nekoEl.style.height = '32px';
     nekoEl.style.position = 'fixed';
-    // nekoEl.style.pointerEvents = "none";
-    nekoEl.style.backgroundImage = `url('https://raw.githubusercontent.com/kyrie25/spicetify-oneko/main/assets/oneko/oneko-${variant}.gif')`;
+    nekoEl.style.pointerEvents = 'auto';
     nekoEl.style.imageRendering = 'pixelated';
     nekoEl.style.left = `${nekoPosX - 16}px`;
     nekoEl.style.top = `${nekoPosY - 16}px`;
-    nekoEl.style.filter = kuroNeko ? 'invert(100%)' : 'none';
-    // Render Oneko below Spicetify's Popup Modal
-    nekoEl.style.zIndex = '99';
+    nekoEl.style.zIndex = 2147483647;
 
-    document.body.appendChild(nekoEl);
+    nekoEl.style.backgroundImage = `url(${nekoFile})`;
 
-    window.addEventListener('mousemove', (e) => {
-      if (forceSleep) return;
-
-      mousePosX = e.clientX;
-      mousePosY = e.clientY;
-    });
-
-    window.addEventListener('resize', () => {
-      if (forceSleep) {
-        forceSleep = false;
-        sleep();
+    nekoEl.addEventListener('dblclick', function () {
+      forceSleep = !forceSleep;
+      if (!forceSleep) {
+        resetIdleAnimation();
       }
     });
 
-    // Handle dragging of the cat
-    nekoEl.addEventListener('mousedown', (e) => {
-      if (e.button !== 0) return;
-      grabbing = true;
-      let startX = e.clientX;
-      let startY = e.clientY;
-      let startNekoX = nekoPosX;
-      let startNekoY = nekoPosY;
-      let grabInterval;
+    document.body.appendChild(nekoEl);
 
-      const mousemove = (e) => {
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
-        const absDeltaX = Math.abs(deltaX);
-        const absDeltaY = Math.abs(deltaY);
-
-        // Scratch in the opposite direction of the drag
-        if (absDeltaX > absDeltaY && absDeltaX > 10) {
-          setSprite(deltaX > 0 ? 'scratchWallW' : 'scratchWallE', frameCount);
-        } else if (absDeltaY > absDeltaX && absDeltaY > 10) {
-          setSprite(deltaY > 0 ? 'scratchWallN' : 'scratchWallS', frameCount);
-        }
-
-        if (
-          grabStop ||
-          absDeltaX > 10 ||
-          absDeltaY > 10 ||
-          Math.sqrt(deltaX ** 2 + deltaY ** 2) > 10
-        ) {
-          grabStop = false;
-          clearTimeout(grabInterval);
-          grabInterval = setTimeout(() => {
-            grabStop = true;
-            nudge = false;
-            startX = e.clientX;
-            startY = e.clientY;
-            startNekoX = nekoPosX;
-            startNekoY = nekoPosY;
-          }, 150);
-        }
-
-        nekoPosX = startNekoX + e.clientX - startX;
-        nekoPosY = startNekoY + e.clientY - startY;
-        nekoEl.style.left = `${nekoPosX - 16}px`;
-        nekoEl.style.top = `${nekoPosY - 16}px`;
-      };
-
-      const mouseup = () => {
-        grabbing = false;
-        nudge = true;
-        resetIdleAnimation();
-        window.removeEventListener('mousemove', mousemove);
-        window.removeEventListener('mouseup', mouseup);
-      };
-
-      window.addEventListener('mousemove', mousemove);
-      window.addEventListener('mouseup', mouseup);
+    document.addEventListener('mousemove', function (event) {
+      mousePosX = event.clientX;
+      mousePosY = event.clientY;
     });
 
-    nekoEl.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      kuroNeko = !kuroNeko;
-      localStorage.setItem('oneko:kuroneko', kuroNeko);
-      nekoEl.style.filter = kuroNeko ? 'invert(100%)' : 'none';
-    });
+    if (persistPosition) {
+      window.addEventListener('beforeunload', function () {
+        window.localStorage.setItem(
+          'oneko',
+          JSON.stringify({
+            nekoPosX: nekoPosX,
+            nekoPosY: nekoPosY,
+            mousePosX: mousePosX,
+            mousePosY: mousePosY,
+            frameCount: frameCount,
+            idleTime: idleTime,
+            idleAnimation: idleAnimation,
+            idleAnimationFrame: idleAnimationFrame,
+            bgPos: nekoEl.style.backgroundPosition,
+          }),
+        );
+      });
+    }
 
-    nekoEl.addEventListener('dblclick', sleep);
-
-    window.onekoInterval = setInterval(frame, 100);
+    window.requestAnimationFrame(onAnimationFrame);
   }
 
-  function getSprite(name, frame) {
-    return spriteSets[name][frame % spriteSets[name].length];
+  let lastFrameTimestamp;
+
+  function onAnimationFrame(timestamp) {
+    // Stops execution if the neko element is removed from DOM
+    if (!nekoEl.isConnected) {
+      return;
+    }
+    if (!lastFrameTimestamp) {
+      lastFrameTimestamp = timestamp;
+    }
+    if (timestamp - lastFrameTimestamp > 100) {
+      lastFrameTimestamp = timestamp;
+      frame();
+    }
+    window.requestAnimationFrame(onAnimationFrame);
   }
 
   function setSprite(name, frame) {
-    const sprite = getSprite(name, frame);
+    const sprite = spriteSets[name][frame % spriteSets[name].length];
     nekoEl.style.backgroundPosition = `${sprite[0] * 32}px ${sprite[1] * 32}px`;
   }
 
@@ -234,10 +196,10 @@
   function idle() {
     idleTime += 1;
 
-    // every ~ 20 seconds
+    // every ~ 5 seconds
     if (
       idleTime > 10 &&
-      Math.floor(Math.random() * 200) == 0 &&
+      Math.floor(Math.random() * 50) == 0 &&
       idleAnimation == null
     ) {
       let avalibleIdleAnimations = ['sleeping', 'scratchSelf'];
@@ -260,19 +222,11 @@
     }
 
     if (forceSleep) {
-      avalibleIdleAnimations = ['sleeping'];
       idleAnimation = 'sleeping';
     }
 
     switch (idleAnimation) {
       case 'sleeping':
-        if (idleAnimationFrame < 8 && nudge && forceSleep) {
-          setSprite('idle', 0);
-          break;
-        } else if (nudge) {
-          nudge = false;
-          resetIdleAnimation();
-        }
         if (idleAnimationFrame < 8) {
           setSprite('tired', 0);
           break;
@@ -301,35 +255,11 @@
 
   function frame() {
     frameCount += 1;
-
-    if (grabbing) {
-      if (grabStop) {
-        setSprite('alert', 0);
-      }
-      return;
-    }
-
     const diffX = nekoPosX - mousePosX;
     const diffY = nekoPosY - mousePosY;
     const distance = Math.sqrt(diffX ** 2 + diffY ** 2);
 
-    // Cat has to sleep on top of the progress bar
-    if (
-      forceSleep &&
-      Math.abs(diffY) < nekoSpeed &&
-      Math.abs(diffX) < nekoSpeed
-    ) {
-      // Make the cat sleep exactly on the top of the progress bar
-      nekoPosX = mousePosX;
-      nekoPosY = mousePosY;
-      nekoEl.style.left = `${nekoPosX - 16}px`;
-      nekoEl.style.top = `${nekoPosY - 16}px`;
-
-      idle();
-      return;
-    }
-
-    if ((distance < nekoSpeed || distance < 48) && !forceSleep) {
+    if (distance < nekoSpeed || distance < 48 || forceSleep) {
       idle();
       return;
     }
@@ -345,6 +275,7 @@
       return;
     }
 
+    let direction;
     direction = diffY / distance > 0.5 ? 'N' : '';
     direction += diffY / distance < -0.5 ? 'S' : '';
     direction += diffX / distance > 0.5 ? 'W' : '';
@@ -361,9 +292,5 @@
     nekoEl.style.top = `${nekoPosY - 16}px`;
   }
 
-  create();
-
-  if (parseLocalStorage('forceSleep', false)) {
-    forceSleep = true;
-  }
+  init();
 })();
