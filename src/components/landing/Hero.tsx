@@ -7,6 +7,7 @@ import React from 'react';
 
 import Container from '../common/Container';
 import Skill from '../common/Skill';
+import TimeAlive from '../common/TimeAlive';
 import CV from '../svgs/CV';
 import Chat from '../svgs/Chat';
 import { Button } from '../ui/button';
@@ -18,7 +19,8 @@ const buttonIcons = {
 };
 
 export default function Hero() {
-  const { name, title, avatar, skills, description, buttons } = heroConfig;
+  const { name, title, avatar, skills, description, buttons, startTime } =
+    heroConfig;
 
   const renderDescription = () => {
     const parts = parseTemplate(description.template, skills);
@@ -68,6 +70,11 @@ export default function Hero() {
 
         <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base whitespace-pre-wrap text-neutral-500 md:text-lg">
           {renderDescription()}
+        </div>
+
+        {/* Time Alive Counter */}
+        <div className="mt-2 text-sm text-neutral-400">
+          <TimeAlive startTimestamp={startTime} />
         </div>
       </div>
 

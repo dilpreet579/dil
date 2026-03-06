@@ -32,6 +32,9 @@ export const heroConfig = {
   title: 'Full-Stack AI Engineer',
   avatar: '/assets/logo.png',
 
+  // Start Time
+  startTime: new Date('2005-01-08').getTime(),
+
   // Skills Configuration
   skills: [
     {
@@ -50,7 +53,7 @@ export const heroConfig = {
       component: 'Python',
     },
     {
-      name: 'React Native (Expo)',
+      name: 'ReactNative(Expo)',
       href: 'https://expo.dev/',
       component: 'ReactIcon',
     },
@@ -63,8 +66,7 @@ export const heroConfig = {
 
   // Description Configuration
   description: {
-    template:
-      'I build scalable web apps and intelligent AI models using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. Passionate about merging Machine Learning with user-centric development.',
+    template: `I build scalable web apps and intelligent AI models using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}Passionate about merging Machine Learning with user-centric development.`,
   },
 
   // Buttons Configuration
