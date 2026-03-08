@@ -174,7 +174,7 @@ export default function Github() {
         ) : (
           <div className="relative overflow-hidden">
             <div className="bg-background/50 relative rounded-lg border border-dashed border-black/20 p-6 backdrop-blur-sm dark:border-white/10">
-              <div className="w-full overflow-x-auto">
+              <div className="w-full overflow-hidden [&_svg]:block [&_svg]:h-auto [&_svg]:w-full">
                 <ActivityCalendar
                   data={contributions}
                   blockSize={12}
